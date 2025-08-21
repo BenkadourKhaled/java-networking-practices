@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class MyClient {
+public class MyClientCharacter {
 
     public static void main(String[] args) {
         try (Socket socket = new Socket("localhost", 5000)) {
