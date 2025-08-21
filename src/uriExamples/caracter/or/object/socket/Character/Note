@@ -1,0 +1,62 @@
+Note:
+
+Server side
+
+ServerSocket serverSocket = new ServerSocket(1234);
+👉 Creates a server that listens on port 1234. It waits for a client to connect.
+
+Socket socket = serverSocket.accept();
+👉 The server waits for a client. When a client connects, it returns a socket representing that connection.
+
+BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+👉 Allows you to read what the client sends (input).
+
+socket.getInputStream() retrieves the raw stream.
+
+InputStreamReader converts bytes into characters.
+
+BufferedReader allows you to read line by line.
+
+PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+👉 Allows you to send messages to the client (output).
+
+socket.getOutputStream() retrieves the raw stream.
+
+PrintWriter simplifies text writing.
+
+true means that it automatically flushes the stream after each send.
+
+String message = in.readLine();
+👉 The server waits and reads a message sent by the client.
+
+System.out.println(“Message received from client: ” + message);
+👉 Displays the message received on the server side.
+
+out.println(“Hello client, I have received your message: ” + message);
+👉 Sends a response to the client.
+
+socket.close(); serverSocket.close();
+👉 Closes the connection with the client and stops the server.
+
+Client side
+
+Socket socket = new Socket(“localhost”, 1234);
+👉 The client connects to the server running on the same machine (localhost) and on port 1234.
+
+BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+👉 Allows you to read the responses sent by the server.
+
+PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+👉 Allows you to send messages to the server.
+
+out.println(“Hi server, I'm the client!”);
+👉 The client sends a message to the server.
+
+String response = in.readLine();
+👉 The client waits and reads the response sent by the server.
+
+System.out.println(“Server response: ” + response);
+👉 Displays the response received from the server.
+
+socket.close();
+👉 Closes the connection.

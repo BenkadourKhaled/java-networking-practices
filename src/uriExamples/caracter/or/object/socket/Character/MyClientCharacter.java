@@ -1,4 +1,4 @@
-package uriExamples.caracter.or.object.socket;
+package uriExamples.caracter.or.object.socket.Character;
 
 import java.io.BufferedReader;
 import java.io.IOException;

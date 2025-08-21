@@ -1,0 +1,14 @@
+Note:
+
+new ServerSocket(6000): opens port 6000; the server waits for incoming connections.
+accept(): blocking → the program remains here until a client connects.
+new ObjectInputStream(socket.getInputStream()): creates a read object stream.
+new ObjectOutputStream(socket.getOutputStream()): creates a write object stream.
+readObject(): receives the object sent by the client and deserializes it into Person.
+Processing: here we create a new Person (simple transformation for the demo).
+writeObject(person): sends the modified object to the client (serialization).
+socket.close(): closes the connection.
+⚠️ Important (order of streams): the above example often works because the client builds its ObjectOutputStream first (see below).
+To avoid any risk of deadlock due to the header of the object streams, we recommend the same order on both sides:
+first create ObjectOutputStream, call flush(), then create ObjectInputStream.
+I provide a “best practice” version at the end of this answer.
